@@ -54,6 +54,27 @@ struct HomeView: View {
                         Image(post.imageName)
                             .resizable()
                             .scaledToFit()
+                        
+                        HStack(spacing: 20) {
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Image(systemName: "heart")
+                                    .font(.title)
+                            }).buttonStyle(PlainButtonStyle())
+                            Button(action: {}, label: {
+                                Image(systemName: "bubble.right")
+                                    .font(.title)
+                            }).buttonStyle(PlainButtonStyle())
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Image(systemName: "paperplane")
+                                    .font(.title)
+                            }).buttonStyle(PlainButtonStyle())
+                            Spacer()
+                            
+                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                Image(systemName: "bookmark")
+                                    .font(.title)
+                            }).buttonStyle(PlainButtonStyle())
+                        }.padding(.all, 10)
                     }
                 }
             }

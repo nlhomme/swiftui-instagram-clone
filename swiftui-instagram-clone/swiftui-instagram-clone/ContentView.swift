@@ -49,6 +49,11 @@ struct HomeView: View {
                             Spacer()
                             Image(systemName: "ellipsis")
                         }.padding(.all, 10)
+                        
+                        Divider()
+                        Image(post.imageName)
+                            .resizable()
+                            .scaledToFit()
                     }
                 }
             }

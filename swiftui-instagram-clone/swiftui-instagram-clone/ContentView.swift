@@ -16,7 +16,8 @@ struct ContentView: View {
                 .navigationBarItems(leading: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                     Image(systemName: "camera")}), trailing: Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                                                                         Image(systemName: "paperplane")}))
-                }
+                }.tabItem {
+                    Image(systemName: "house.fill")
             }
         }
     }
@@ -24,7 +25,29 @@ struct ContentView: View {
 
 struct HomeView: View {
     var body: some View {
-        Text("Coucou")
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHStack(spacing: 20) {
+                        ForEach(Author.all) { author in
+                            VStack {
+                                Image(author.photoName)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                                    .frame(width: 70)
+                                    .overlay(
+                                        Circle().stroke(Color.red, style: StrokeStyle(lineWidth: 2))
+                                            .frame(width:75, height: 75)
+                                    )
+                                
+                                Text(author.name)
+                            }
+                        }
+                    }.padding(.all, 10)
+                }
+            }
+        }
     }
 }
 

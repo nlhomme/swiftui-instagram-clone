@@ -76,6 +76,20 @@ struct HomeView: View {
                             }).buttonStyle(PlainButtonStyle())
                         }.padding(.all, 10)
                     }
+                    
+                    VStack(alignment: .leading) {
+                        
+                        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                            Text("Voir les j'aime")
+                                .font(.headline)
+                        }).buttonStyle(PlainButtonStyle())
+                        HStack(alignment: .top) {
+                            Text(post.author.name)
+                                .font(.headline)
+                            Text(post.comment)
+                                .lineLimit(nil)
+                        }
+                    }.padding(.horizontal)
                 }
             }
         }

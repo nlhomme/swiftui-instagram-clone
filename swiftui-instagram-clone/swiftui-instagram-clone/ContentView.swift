@@ -30,21 +30,26 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack(spacing: 20) {
                         ForEach(Author.all) { author in
-                            VStack {
-                                Image(author.photoName)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                                    .frame(width: 70)
-                                    .overlay(
-                                        Circle().stroke(Color.red, style: StrokeStyle(lineWidth: 2))
-                                            .frame(width:75, height: 75)
-                                    )
-                                
-                                Text(author.name)
-                            }
+                            AuthorStoryView(author: author)
                         }
                     }.padding(.all, 10)
+                }
+                Divider()
+                
+                ForEach(Post.all) { post in
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            AuthorStoryView(author: post.author, width: 40, showText: false)
+                            VStack(alignment: .leading) {
+                                Text(post.author.name)
+                                    .font(.headline)
+                                Text("Paris")
+                            }
+                            
+                            Spacer()
+                            Image(systemName: "ellipsis")
+                        }.padding(.all, 10)
+                    }
                 }
             }
         }
@@ -54,5 +59,27 @@ struct HomeView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct AuthorStoryView: View {
+    let author: Author
+    var width: CGFloat = 70
+    var showText = true
+    var body: some View {
+        VStack {
+            Image(author.photoName)
+                .resizable()
+                .scaledToFit()
+                .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
+                .frame(width: width)
+                .overlay(
+                    Circle().stroke(Color.red, style: StrokeStyle(lineWidth: 2))
+                        .frame(width: width + 5, height: width + 5)
+                )
+            if showText {
+                Text(author.name)
+            }
+        }
     }
 }

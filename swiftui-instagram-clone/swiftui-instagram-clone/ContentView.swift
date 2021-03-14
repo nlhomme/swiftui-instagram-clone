@@ -24,6 +24,14 @@ struct ContentView: View {
 }
 
 struct HomeView: View {
+    // Calculates the difference between the post time and the current time
+    var relativeFormatter: RelativeDateTimeFormatter {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        formatter.locale = Locale(identifier: "fr_FR")
+        return formatter
+    }
+
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
@@ -89,6 +97,8 @@ struct HomeView: View {
                             Text(post.comment)
                                 .lineLimit(nil)
                         }
+                        
+                        Text(relativeFormatter.localizedString(for: post.creationDate, relativeTo: Date()))
                     }.padding(.horizontal)
                 }
             }
